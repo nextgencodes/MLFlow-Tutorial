@@ -1,0 +1,9 @@
+expectations_suite_file: configs/expectations.json
+validation_steps:
+  - check_schema_consistency
+  - check_data_type_validation
+  - check_range_checks
+  - check_missing_values
+  - check_duplicate_records
+  - check_data_distribution
+  - check_outliers

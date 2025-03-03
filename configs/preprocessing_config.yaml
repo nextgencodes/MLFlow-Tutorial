@@ -1,0 +1,10 @@
+missing_value_imputation:
+  method: median
+outlier_handling:
+  method: capping
+  upper_percentile: 0.99
+  lower_percentile: 0.01
+categorical_encoding:
+  method: one-hot
+numerical_scaling:
+  method: standard

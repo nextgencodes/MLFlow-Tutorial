@@ -1,0 +1,6 @@
+metrics:
+  - accuracy
+  - precision
+  - recall
+  - f1
+  - roc_auc

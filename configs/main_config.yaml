@@ -1,0 +1,74 @@
+project_name: Employee Attrition Prediction
+experiment_name: Attrition Prediction Experiment
+raw_data_path: data/raw/Emp_attrition.csv
+processed_data_path: data/processed/
+train_data_path: data/processed/train.csv
+test_data_path: data/processed/test.csv
+model_path: models/
+log_path: logs/
+mlflow_server_uri: "http://127.0.0.1:8080"  # Change this to your server's address
+
+
+data_ingestion:
+  source_type: local_csv  # Could also be 'database', 'api', etc.
+  # Add other ingestion parameters as needed
+
+data_validation:
+    # Great Expectations suite path, or other validation parameters.  More details later.
+  expectations_suite_file: configs/expectations.json  # We'll create this later
+
+preprocessing:
+  missing_value_imputation:
+    method: median  # Example; could be 'mean', 'most_frequent', 'knn', etc.
+  outlier_handling:
+    method: capping  # Example; could be 'winsorizing', 'removal', etc.
+    upper_percentile: 0.99  # Example value
+    lower_percentile: 0.01
+  categorical_encoding:
+    method: one-hot # Example of One-Hot Encoding
+  numerical_scaling:
+    method: standard # Examples for standard scaling
+  text_processing:
+    method: "" # We don't have a text data
+
+feature_engineering:
+  feature_interactions:
+    - feature1: Age
+      feature2: Monthly Income
+      operation: multiply  # Options: multiply, divide
+  feature_ratios:
+    - numerator: Monthly Income
+      denominator: Years at Company  # Handle potential division by zero!
+    - numerator: Number of Promotions
+      denominator: Company Tenure (In Months)
+  polynomial_features:
+    - feature: Age
+      degree: 2
+  use_domain_knowledge: true
+
+model_training:
+  algorithm: RandomForestClassifier  # Example; could be any scikit-learn model
+  hyperparameters: #Example hyperparameters
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42
+  cross_validation:
+    method: StratifiedKFold  # Or KFold, etc.
+    n_splits: 5
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - roc_auc
+
+model_validation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - roc_auc
+
+model_deployment:
+   deployment_type: local_model

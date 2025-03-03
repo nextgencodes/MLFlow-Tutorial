@@ -1,0 +1,10 @@
+feature_interactions:
+    - feature1: Age
+      feature2: "Monthly Income"
+      operation: multiply
+feature_ratios:
+    - numerator: "Monthly Income"
+      denominator: "Years at Company"
+polynomial_features:
+    - feature: "Age"
+      degree: 2

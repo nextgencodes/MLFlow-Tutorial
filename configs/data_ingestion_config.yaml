@@ -1,0 +1,4 @@
+source_type: local_csv
+file_path: data/raw/Emp_attrition.csv  # Relative to project root
+separator: ','  # CSV separator
+encoding: 'utf-8' # Or 'latin-1', etc., if needed
